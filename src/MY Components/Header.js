@@ -16,11 +16,11 @@ function Navbar() {
         <li><Link to="/FindRoute">Find Route</Link></li>
         <li><Link to="/CreateRoute">Create Route</Link></li>
         <li><Link to="/My Bookings">My Bookings</Link></li>
-      </ul>
+      </ul> 
 
       
       <div className="nav-right">
-        <a href="#" className="login">Log In</a>
+        <li><Link to="/Login">Login</Link></li>
         <a href="#" className="btn">Get Started</a>
       </div>
     </nav>
