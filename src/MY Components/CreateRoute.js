@@ -49,7 +49,7 @@ export default function CreateRoute() {
                   <option>Troller</option>
                   <option>Pickup</option>
                 </select>
-              </div>
+              </div> 
 
               <div>
                 <label htmlFor="capacity" id="label-capacity">Available Capacity (tons)</label>
