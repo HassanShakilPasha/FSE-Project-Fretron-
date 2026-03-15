@@ -1,0 +1,263 @@
+.CreateRoute{
+    width:100%;
+    height:100vh;
+}
+
+
+.row{
+    display:flex;
+    gap:40px;
+    margin-bottom:20px;
+}
+
+
+
+.Initial h1{
+    margin-left:250px;
+    margin-top:20px;
+    margin-bottom:0;
+    font-weight:bolder;
+    font-size:40px;
+}
+
+.Initial p{
+    margin-top:5px;
+    margin-left:250px;
+    color:dimgray;
+    font-size:16px;
+}
+
+
+
+.Details{
+    width:1000px;
+    margin-left:250px;
+    margin-top:20px;
+    border:1px solid dimgray;
+    border-radius:10px;
+    padding-bottom:20px;
+}
+
+.Details h4{
+    font-weight:normal;
+    margin-left:20px;
+    font-size:20px;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+
+
+.left{
+    margin:20px 50px 0 0;
+}
+
+
+
+#label-Origin
+{
+    display:block;
+    font-size:16px;
+    margin-left:20px;
+    margin-bottom:8px;
+    font-weight:normal;
+}
+
+
+#label-Destination
+{
+    display:block;
+    font-size:16px;
+    margin-left:20px;
+    margin-bottom:8px;
+    font-weight:normal;
+}
+
+
+#label-DepartDate
+{
+    display:block;
+    font-size:16px;
+    margin-left:20px;
+    margin-bottom:8px;
+    font-weight:normal;
+}
+
+#label-ArrivalDate
+{
+    display:block;
+    font-size:16px;
+    margin-left:20px;
+    margin-bottom:8px;
+    font-weight:normal;
+}
+#label-vehicle
+{
+    display:block;
+    font-size:16px;
+    margin-left:20px;
+    margin-bottom:8px;
+    font-weight:normal;
+}
+#label-capacity
+{
+    display:block;
+    font-size:16px;
+    margin-left:20px;
+    margin-bottom:8px;
+    font-weight:normal;
+}
+
+#label-price
+{
+    display:block;
+    font-size:16px;
+    margin-left:20px;
+    margin-bottom:8px;
+    font-weight:normal;
+}
+
+#label-desc{
+    display:block;
+    font-size:16px;
+    margin-left:20px;
+    margin-bottom:8px;
+    font-weight:normal;
+}
+
+
+#Origin
+{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:0 20px;
+    width:350px;
+    background-color:lightgray;
+    color:black;
+}
+
+
+#Destination
+{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:0 20px;
+    width:350px;
+    background-color:lightgray;
+    color:black;
+}
+#DepartDate
+{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:0 20px;
+    width:350px;
+    background-color:lightgray;
+    color:black;
+}
+#ArrivalDate
+{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:0 20px;
+    width:350px;
+    background-color:lightgray;
+    color:black;
+}
+#capacity{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:0 20px;
+    width:350px;
+    background-color:lightgray;
+    color:black;
+}
+
+
+
+#vehicle{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:0 20px;
+    width:375px;
+    background-color:lightgray;
+    color:black;
+}
+
+
+
+#price{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:0 20px;
+    width:820px;
+    background-color:lightgray;
+}
+
+
+
+#desc{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    margin:0 20px;
+    width:820px;
+    height:60px;
+    background-color:lightgray;
+}
+
+
+
+.buttons{
+    display:flex;
+    gap:20px;
+    margin:20px;
+}
+
+
+
+#createRouteBtn{
+    width:700px;
+    padding:14px;
+    background:black;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+
+
+#cancelBtn{
+    padding:14px 25px;
+    border-radius:8px;
+    border:1px solid gray;
+    margin-left: 20px;
+    background:white;
+    font-size:16px;
+    cursor:pointer;
+}

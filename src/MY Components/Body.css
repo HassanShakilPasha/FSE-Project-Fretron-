@@ -1,0 +1,69 @@
+.Body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px;
+  background-color: #2e63f6;
+  color: white;
+  width: 1361px;
+  height: 600px;
+}
+
+.left {
+  flex: 1;
+}
+
+.left h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.left p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.buttons a {
+  text-decoration: none;
+  font-weight: bold;
+  padding: 12px 25px;
+  border-radius: 6px;
+  margin-right: 15px;
+  transition: all 0.3s;
+}
+
+/* Find Routes Button */
+.Find {
+  background-color: white;
+  color: #2e63f6;
+}
+
+.Find:hover {
+  background-color: #e0e0e0;
+}
+
+/* Create Route Button */
+.Create {
+  border: 2px solid white;
+  color: white;
+}
+
+.Create:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Right side image */
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right img {
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}

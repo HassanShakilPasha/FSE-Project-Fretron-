@@ -1,0 +1,6 @@
+.App {
+  min-height: 100vh;           /* full screen height */
+  background-color: white;   /* your page color */
+  display: flex;
+  flex-direction: column;
+}
