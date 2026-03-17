@@ -5,8 +5,12 @@
   padding: 60px 80px;
   background-color: #2e63f6;
   color: white;
-  width: 1361px;
-  height: 600px;
+  width: 100%;
+  max-width: 1320px;
+  min-height: 600px;
+  margin: 20px auto;
+  box-sizing: border-box;
+  border-radius: 12px;
 }
 
 .left {

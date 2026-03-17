@@ -1,17 +1,32 @@
 import React from "react";
 import "./My Bookings.css";
-import { Button } from "bootstrap";
+import { Link } from "react-router-dom";
+import { getRoutesByTransporter } from "../utils/storage";
 
-export default function MyBookings() {
+export default function MyBookings({ currentUser }) {
+    const routes = React.useMemo(() => {
+        if (!currentUser) {
+            return [];
+        }
+
+        return getRoutesByTransporter(currentUser.id);
+    }, [currentUser]);
+
+    const totalCapacity = routes.reduce((sum, route) => sum + Number(route.availableCapacity || 0), 0);
+    const averagePrice =
+        routes.length > 0
+            ? routes.reduce((sum, route) => sum + Number(route.pricePerKg || 0), 0) / routes.length
+            : 0;
+
   return (
-    <div className="main">
+        <div className="myBookingsPage">
       <div className="top">
             <h1>
-            Dashboard
+                        My Routes
             </h1>
 
             <p>
-                Welcome back! Here's your overview
+                                Manage all routes posted by your transporter account
             </p>
       </div>
 
@@ -24,7 +39,7 @@ export default function MyBookings() {
 
                     <div className="vari">
                         <p>
-                            2
+                            {routes.length}
                         </p>
                     </div>
                 </div>
@@ -33,12 +48,12 @@ export default function MyBookings() {
              <div className="box">
                 <div className="b1">
                     <p>
-                        Total Bookings
+                        Total Capacity
                     </p>
 
                     <div className="vari">
                         <p>
-                            2
+                            {totalCapacity} tons
                         </p>
                     </div>
                 </div>
@@ -47,12 +62,12 @@ export default function MyBookings() {
              <div className="box">
                 <div className="b1">
                     <p>
-                        Pending
+                        Available
                     </p>
 
                     <div className="vari">
                         <p>
-                            2
+                            {routes.length}
                         </p>
                     </div>
                 </div>
@@ -62,12 +77,12 @@ export default function MyBookings() {
              <div className="box">
                 <div className="b1">
                     <p>
-                        Total Earning
+                        Avg Price
                     </p>
 
                     <div className="vari1">
                         <p>
-                            $5600
+                            ${averagePrice.toFixed(2)}/kg
                         </p>
                     </div>
                 </div>
@@ -84,21 +99,10 @@ export default function MyBookings() {
 
                 <div className="qgrid">
 
-                    <button id="b" type="button">
-                        Find Route
-                    </button>
-
-                    <button id="b" type="button">
-                        New Booking
-                    </button>
-
-                    <button id="b" type="button">
-                        Create Route
-                    </button>
-
-                    <button id="b" type="button">
-                        MyBookings
-                    </button>
+                    <Link id="b" to="/find-route">Find Route</Link>
+                    <Link id="b" to="/create-route">Create Route</Link>
+                    <Link id="b" to="/my-routes">Refresh My Routes</Link>
+                    <Link id="b" to="/dashboard">Go to Dashboard</Link>
 
                 </div>
             
@@ -112,26 +116,34 @@ export default function MyBookings() {
 
                     <div className="panelHeader">
                         <p className="title">My Routes</p>
-                        <p className="viewAll">View All →</p>
+                                                <p className="viewAll">{routes.length} total</p>
                     </div>
 
-                    <div className="card">
+                                        {routes.length === 0 && (
+                                            <div className="card">
+                                                <p>You have not posted any route yet.</p>
+                                                <p className="viewAll"><Link to="/create-route">Post your first route</Link></p>
+                                            </div>
+                                        )}
 
-                        <div className="cardTop">
-                            <span className="tag">18-Wheeler Truck</span>
-                            <span className="status">available</span>
-                        </div>
+                                        {routes.map((route) => (
+                                            <div className="card" key={route.id}>
+                                                <div className="cardTop">
+                                                    <span className="tag">{route.vehicleType || "Transport Route"}</span>
+                                                    <span className="status">{route.status}</span>
+                                                </div>
 
-                        <p className="rating">⭐ 4.8</p>
+                                                <p className="route">{route.source} → {route.destination}</p>
 
-                        <p className="route">📍 New York, NY → Los Angeles, CA</p>
+                                                <div className="cardBottom">
+                                                    <span>📅 {route.departureDate}</span>
+                                                    <span className="price">${route.pricePerKg}/kg</span>
+                                                </div>
 
-                        <div className="cardBottom">
-                            <span>📅 10/03/2026</span>
-                            <span className="price">$450/ton</span>
-                        </div>
-
-                    </div>
+                                                <p>Capacity: {route.availableCapacity} tons</p>
+                                                {route.description && <p>{route.description}</p>}
+                                            </div>
+                                        ))}
 
                 </div>
 
@@ -140,24 +152,24 @@ export default function MyBookings() {
                 <div className="panel">
 
                     <div className="panelHeader">
-                        <p className="title">Recent Bookings</p>
-                        <p className="viewAll">View All →</p>
+                                                <p className="title">Demo Checklist</p>
+                                                <p className="viewAll">Week 1-2</p>
                     </div>
 
                     <div className="card">
 
                         <div className="cardTop">
-                            <p className="company">TechParts Inc.</p>
-                            <span className="status">confirmed</span>
+                                                        <p className="company">Transporter Demo</p>
+                                                        <span className="status">ready</span>
                         </div>
 
-                        <p>5 tons</p>
-
-                        <p className="route">📍 New York, NY → Los Angeles, CA</p>
+                                                <p>1. Login as Transporter</p>
+                                                <p>2. Create route Lahore → Islamabad</p>
+                                                <p>3. Open My Routes and verify it appears</p>
 
                         <div className="cardBottom">
-                            <span>05/03/2026</span>
-                            <span className="price">$2250</span>
+                                                        <span>Current user: {currentUser?.name}</span>
+                                                        <span className="price">{currentUser?.role}</span>
                         </div>
 
                     </div>

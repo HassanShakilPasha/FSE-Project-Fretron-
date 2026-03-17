@@ -4,7 +4,7 @@ import './FindRoute.css';
 
 export default function FindRoute() {
   return (
-    <div className='main'>
+        <div className='findRoutePage'>
         <div className='top'>
             <h1>
                 Find Route
@@ -56,7 +56,7 @@ export default function FindRoute() {
             </p>
 
             <div className='grid2'>
-                <div className='row'>
+                <div className='routeCardsRow'>
                     <div className='box'>
                         <div className="box-top">
                             <div className="company">

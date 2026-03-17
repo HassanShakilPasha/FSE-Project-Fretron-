@@ -1,17 +1,15 @@
-.main
-{
-    margin-left: 50px;
+.myBookingsPage {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 20px 30px 40px;
 }
 
-.top{
-    margin-left: 0;
-}
-.top p{
+.myBookingsPage .top p{
     color: #4a5565
 }
 
 
-.grid1
+.myBookingsPage .grid1
 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -21,14 +19,14 @@
 }
 
 
-.box
+.myBookingsPage .box
 {
     width: 240px;
     height: 90px;
 }
 
 
-.b1
+.myBookingsPage .b1
 {
     color: #4a5565;
     
@@ -36,7 +34,7 @@
     margin-bottom: 0;
 }
 
-.vari
+.myBookingsPage .vari
 {
     padding: 0;
     margin-top: 0px 0 0 0;
@@ -45,14 +43,14 @@
     font-weight: bold;
 }
 
-.vari p
+.myBookingsPage .vari p
 {
     margin: 0px 0 0 0;
 
 }
 
 
-.vari1
+.myBookingsPage .vari1
 {
     padding: 0;
     margin-top: 0px;
@@ -61,21 +59,22 @@
     font-weight: bold;
 }
 
-.vari1 p
+.myBookingsPage .vari1 p
 {
     margin: 0px 0 0 0;
 
 }
 
-.quick
+.myBookingsPage .quick
 {
     margin-top: 50px;
     border: 1px solid  #4a5565;
     border-radius: 8px;
-    width: 1380px
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.quick p
+.myBookingsPage .quick p
 {
     color: black;
     font-size: 16px;
@@ -84,7 +83,7 @@
 }
 
 
-.qgrid
+.myBookingsPage .qgrid
 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -95,71 +94,76 @@
     padding-right: 20px;
 }
 
-#b
+.myBookingsPage #b
 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
     font-size: 14px;
     height: 80px;
     background-color: white;
     border-radius: 8px;
     border: 1px solid #4a5565;
+    text-decoration: none;
+    color: black;
 }
 
-#b:hover
+.myBookingsPage #b:hover
 {
     background-color: #f5f5f5;
     cursor: pointer;
 }
 
 
-.view{
+.myBookingsPage .view{
     display:flex;
     gap:30px;
     margin-top:40px;
 }
 
-.panel{
+.myBookingsPage .panel{
     flex:1;
     border:1px solid #ddd;
     border-radius:12px;
     padding:20px;
 }
 
-.panelHeader{
+.myBookingsPage .panelHeader{
     display:flex;
     justify-content:space-between;
     margin-bottom:20px;
 }
 
-.title{
+.myBookingsPage .title{
     font-weight:600;
     font-size:18px;
 }
 
-.viewAll{
+.myBookingsPage .viewAll{
     color:gray;
     cursor:pointer;
 }
 
-.card{
+.myBookingsPage .card{
     border:1px solid #ddd;
     border-radius:10px;
     padding:15px;
 }
 
-.cardTop{
+.myBookingsPage .cardTop{
     display:flex;
     justify-content:space-between;
     margin-bottom:10px;
 }
 
-.tag{
+.myBookingsPage .tag{
     background:#f0f0f0;
     padding:4px 10px;
     border-radius:6px;
 }
 
-.status{
+.myBookingsPage .status{
     background:black;
     color:white;
     padding:3px 10px;
@@ -167,16 +171,16 @@
     font-size:12px;
 }
 
-.route{
+.myBookingsPage .route{
     margin:10px 0;
 }
 
-.cardBottom{
+.myBookingsPage .cardBottom{
     display:flex;
     justify-content:space-between;
 }
 
-.price{
+.myBookingsPage .price{
     color:#2a6df4;
     font-weight:600;
 }

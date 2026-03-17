@@ -1,8 +1,16 @@
 import React from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ currentUser, onLogout }) {
+  const navigate = useNavigate();
+  const isTransporter = currentUser?.role === "transporter";
+
+  function handleLogoutClick() {
+    onLogout();
+    navigate("/login");
+  }
+
   return (
     <nav className="navbar">
       
@@ -12,16 +20,18 @@ function Navbar() {
 
       
       <ul className="nav-links">
-        <li><Link to="/Dashboard">Dashboard</Link></li>
-        <li><Link to="/FindRoute">Find Route</Link></li>
-        <li><Link to="/CreateRoute">Create Route</Link></li>
-        <li><Link to="/My Bookings">My Bookings</Link></li>
+        <li><Link to="/dashboard">Dashboard</Link></li>
+        <li><Link to="/find-route">Find Route</Link></li>
+        {isTransporter && <li><Link to="/create-route">Create Route</Link></li>}
+        {isTransporter && <li><Link to="/my-routes">My Routes</Link></li>}
       </ul> 
 
       
       <div className="nav-right">
-        <li><Link to="/Login">Login</Link></li>
-        <a href="#" className="btn">Get Started</a>
+        {!currentUser && <li><Link to="/login">Login</Link></li>}
+        {!currentUser && <Link to="/login" className="btn">Get Started</Link>}
+        {currentUser && <span>{currentUser.name} ({currentUser.role})</span>}
+        {currentUser && <button className="btn" onClick={handleLogoutClick}>Logout</button>}
       </div>
     </nav>
   );

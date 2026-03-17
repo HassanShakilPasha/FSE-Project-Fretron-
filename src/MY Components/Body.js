@@ -1,6 +1,7 @@
 import React from "react";
 import "./Body.css";
 import truckImage from "./truck pic.jpg"; 
+import { Link } from "react-router-dom";
 
 
 function Body()
@@ -14,8 +15,8 @@ function Body()
                     reduce costs, and improve efficiency.
                 </p>
                 <div className="buttons">
-                    <a href="#" className="Find">Find Routes </a>
-                    <a href="#" className="Create">Create Route</a>
+                    <Link to="/find-route" className="Find">Find Routes </Link>
+                    <Link to="/create-route" className="Create">Create Route</Link>
                 </div>
 
             </div>

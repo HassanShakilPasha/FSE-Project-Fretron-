@@ -1,10 +1,14 @@
 .CreateRoute{
     width:100%;
-    height:100vh;
+    min-height:100vh;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 20px 30px 50px;
+    box-sizing: border-box;
 }
 
 
-.row{
+.CreateRoute .row{
     display:flex;
     gap:40px;
     margin-bottom:20px;
@@ -12,26 +16,27 @@
 
 
 
-.Initial h1{
-    margin-left:250px;
+.CreateRoute .Initial h1{
+    margin-left:0;
     margin-top:20px;
     margin-bottom:0;
     font-weight:bolder;
     font-size:40px;
 }
 
-.Initial p{
+.CreateRoute .Initial p{
     margin-top:5px;
-    margin-left:250px;
+    margin-left:0;
     color:dimgray;
     font-size:16px;
 }
 
 
 
-.Details{
-    width:1000px;
-    margin-left:250px;
+.CreateRoute .Details{
+    width:100%;
+    max-width:100%;
+    margin-left:0;
     margin-top:20px;
     border:1px solid dimgray;
     border-radius:10px;
@@ -40,7 +45,7 @@
     margin-bottom: 100px;
 }
 
-.Details h4{
+.CreateRoute .Details h4{
     font-weight:normal;
     margin-left:20px;
     font-size:20px;
@@ -50,7 +55,7 @@
 
 
 
-.left{
+.CreateRoute .left{
     margin:20px 50px 0 0;
 }
 
@@ -233,7 +238,7 @@
 
 
 
-.buttons{
+.CreateRoute .buttons{
     display:flex;
     gap:20px;
     margin:20px;
@@ -269,6 +274,19 @@
 {
     margin-left: 20px;
     text-decoration: none;
+}
+
+.formStatus {
+    margin: 8px 20px;
+    font-size: 14px;
+}
+
+.formError {
+    color: #b91c1c;
+}
+
+.formSuccess {
+    color: #15803d;
 }
 
 
