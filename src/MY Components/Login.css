@@ -1,0 +1,124 @@
+.Login{
+    width:100%;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    
+    align-items:center;
+    background-color: white;
+}
+
+
+
+.Logo h1{
+    font-size:40px;
+    font-weight:bold;
+    margin-bottom:0px;
+    margin-top: 50px;
+    color: blue
+}
+
+
+
+.Middle{
+    text-align:center;
+}
+
+.Middle h2{
+    font-size:28px;
+    margin-bottom:10px;
+}
+
+.Middle p{
+    color:dimgray;
+    font-size:16px;
+}
+
+.form
+{
+
+    border: 1px solid lightgrey;
+    border-radius: 8px;
+
+    text-align: left;
+    
+}
+
+.form h4{
+    font-weight: normal;
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+.row {
+    display: flex;
+    flex-direction: column; 
+    gap: 8px;               
+    margin-bottom: 20px;
+}
+
+#label-email
+{
+    display:block;
+    font-size:14px;
+    margin-left:20px;
+    margin-bottom:0px;
+    font-weight:bold;
+}
+
+#email
+{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:none;
+    border-radius:5px;
+    margin:0 20px;
+    width:350px;
+    height: 15px;
+    background-color:rgba(227, 224, 224, 0.848);
+    color:black;
+}
+
+
+
+#label-password
+{
+    display:block;
+    font-size:14px;
+    margin-left:20px;
+    margin-bottom:0px;
+    color: black;
+    font-weight: bold;
+}
+
+#password
+{
+    display:block;
+    padding:10px;
+    font-size:16px;
+    border:none;
+    border-radius:5px;
+    margin:0 20px;
+    width:350px;
+    height: 15px;
+    background-color:rgba(227, 224, 224, 0.848);
+    color:black;
+}
+
+#Create
+{
+    width: 370px;
+    margin-left: 20px;
+    height: 39px;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+    font-size: 19px;
+}
+
+#signup
+{
+    font-weight-meduim:500;
+    text-align: center;
+}

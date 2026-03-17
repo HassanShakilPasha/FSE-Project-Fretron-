@@ -10,7 +10,7 @@ export default function CreateRoute() {
       </div>
 
       <div className='Details'>
-          <h4>Route Details</h4>
+          <h4>Route Details</h4> 
           <div className='left'>
           
             <div className="row">
