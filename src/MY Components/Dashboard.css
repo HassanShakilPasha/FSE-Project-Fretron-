@@ -1,19 +1,41 @@
 .dashboardWrap {
-	max-width: 1320px;
+	width: 100%;
+	max-width: 680px;
 	margin: 0 auto;
-	padding: 32px 30px;
+	padding: 28px 26px;
+	position: relative;
+	z-index: 1;
+	color: #13324f;
+	background: #ffffff;
+	backdrop-filter: blur(6px);
+	border-radius: 14px;
+	margin-top: 40px;
+	box-sizing: border-box;
+	box-shadow: 0 10px 26px rgba(16, 24, 40, 0.08);
+}
+
+.dashboardWrap h1,
+.dashboardWrap > p {
+	text-align: center;
 }
 
 .dashboardActions {
-	margin-top: 20px;
+	margin-top: 24px;
 	display: flex;
 	gap: 16px;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .dashboardActions a {
 	text-decoration: none;
-	border: 1px solid #c2cad7;
-	color: #1f2937;
+	border: 1px solid rgba(61, 134, 214, 0.35);
+	color: #12426d;
 	border-radius: 8px;
 	padding: 10px 14px;
+	background: rgba(221, 239, 255, 0.75);
+}
+
+.dashboardActions a:hover {
+	background: rgba(157, 206, 255, 0.65);
 }

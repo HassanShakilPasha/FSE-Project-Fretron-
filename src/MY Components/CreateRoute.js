@@ -3,10 +3,40 @@ import './CreateRoute.css';
 import { Link } from 'react-router-dom';
 import { createRoute } from '../utils/storage';
 
+const PAKISTAN_MAJOR_CITIES = [
+  'Karachi',
+  'Lahore',
+  'Islamabad',
+  'Rawalpindi',
+  'Faisalabad',
+  'Multan',
+  'Peshawar',
+  'Quetta',
+  'Hyderabad',
+  'Sialkot',
+  'Gujranwala',
+  'Sargodha',
+  'Bahawalpur',
+  'Sukkur',
+  'Larkana',
+  'Abbottabad',
+  'Mardan',
+  'Mingora',
+  'Dera Ghazi Khan',
+  'Muzaffarabad',
+  'Gwadar',
+  'Kasur',
+  'Rahim Yar Khan',
+  'Jhelum',
+  'Sheikhupura',
+];
+
 export default function CreateRoute({ currentUser }) {
   const [form, setForm] = React.useState({
     source: '',
+    sourceOther: '',
     destination: '',
+    destinationOther: '',
     departureDate: '',
     expectedArrivalDate: '',
     vehicleType: '',
@@ -22,10 +52,33 @@ export default function CreateRoute({ currentUser }) {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
+  function handleCitySelect(event) {
+    const { name, value } = event.target;
+
+    if (name === 'source') {
+      setForm((prev) => ({
+        ...prev,
+        source: value,
+        sourceOther: value === 'other' ? prev.sourceOther : '',
+      }));
+      return;
+    }
+
+    if (name === 'destination') {
+      setForm((prev) => ({
+        ...prev,
+        destination: value,
+        destinationOther: value === 'other' ? prev.destinationOther : '',
+      }));
+    }
+  }
+
   function resetForm() {
     setForm({
       source: '',
+      sourceOther: '',
       destination: '',
+      destinationOther: '',
       departureDate: '',
       expectedArrivalDate: '',
       vehicleType: '',
@@ -40,8 +93,17 @@ export default function CreateRoute({ currentUser }) {
     setStatus('');
     setError('');
 
-    if (!form.source.trim() || !form.destination.trim() || !form.departureDate || !form.availableCapacity || !form.pricePerKg) {
+    const finalSource = form.source === 'other' ? form.sourceOther.trim() : form.source.trim();
+    const finalDestination =
+      form.destination === 'other' ? form.destinationOther.trim() : form.destination.trim();
+
+    if (!finalSource || !finalDestination || !form.departureDate || !form.availableCapacity || !form.pricePerKg) {
       setError('Please fill source, destination, departure date, available capacity, and price/kg.');
+      return;
+    }
+
+    if (finalSource.toLowerCase() === finalDestination.toLowerCase()) {
+      setError('Source and destination cannot be the same city.');
       return;
     }
 
@@ -50,7 +112,14 @@ export default function CreateRoute({ currentUser }) {
       return;
     }
 
-    createRoute(form, currentUser.id);
+    createRoute(
+      {
+        ...form,
+        source: finalSource,
+        destination: finalDestination,
+      },
+      currentUser.id
+    );
     setStatus('Route posted successfully. You can now view it in My Routes.');
     resetForm();
   }
@@ -58,10 +127,12 @@ export default function CreateRoute({ currentUser }) {
   if (!currentUser || currentUser.role !== 'transporter') {
     return (
       <div className='CreateRoute'>
-        <div className='Initial'>
-          <h1>Create Route</h1>
-          <p>Only transporter accounts can post routes.</p>
-          <p><Link to='/login'>Log in as transporter</Link> to continue.</p>
+        <div className='CreateRouteContainer'>
+          <div className='Initial'>
+            <h1>Create Route</h1>
+            <p>Only transporter accounts can post routes.</p>
+            <p><Link to='/login'>Log in as transporter</Link> to continue.</p>
+          </div>
         </div>
       </div>
     );
@@ -69,24 +140,61 @@ export default function CreateRoute({ currentUser }) {
 
   return (
     <div className='CreateRoute'>
-      <div className='Initial'>
-        <h1>Create Route</h1>
-        <p>List your available cargo space and connect with businesses that need shipping.</p>
-      </div>
+      <div className='CreateRouteContainer'>
+        <div className='Initial'>
+          <h1>Create Route</h1>
+          <p>List your available cargo space and connect with businesses that need shipping.</p>
+        </div>
 
-      <form className='Details' onSubmit={handleSubmit}>
+        <form className='Details' onSubmit={handleSubmit}>
           <h4>Route Details</h4> 
           <div className='left'>
           
             <div className="row">
               <div>
                 <label htmlFor="Origin" id="label-Origin">Origin</label>
-                <input type="text" id="Origin" name="source" placeholder="Enter Origin" value={form.source} onChange={updateField} />
+                <select id="Origin" name="source" value={form.source} onChange={handleCitySelect}>
+                  <option value="">Select origin city</option>
+                  {PAKISTAN_MAJOR_CITIES.map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+                  <option value="other">Other (type manually)</option>
+                </select>
+                {form.source === 'other' && (
+                  <input
+                    type="text"
+                    name="sourceOther"
+                    className="cityOtherInput"
+                    placeholder="Enter other origin city"
+                    value={form.sourceOther}
+                    onChange={updateField}
+                  />
+                )}
               </div>
 
               <div>
                 <label htmlFor="Destination" id="label-Destination">Destination</label>
-                <input type="text" id="Destination" name="destination" placeholder="Enter Destination" value={form.destination} onChange={updateField} />
+                <select id="Destination" name="destination" value={form.destination} onChange={handleCitySelect}>
+                  <option value="">Select destination city</option>
+                  {PAKISTAN_MAJOR_CITIES.map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+                  <option value="other">Other (type manually)</option>
+                </select>
+                {form.destination === 'other' && (
+                  <input
+                    type="text"
+                    name="destinationOther"
+                    className="cityOtherInput"
+                    placeholder="Enter other destination city"
+                    value={form.destinationOther}
+                    onChange={updateField}
+                  />
+                )}
               </div>
             </div>
 
@@ -150,7 +258,8 @@ export default function CreateRoute({ currentUser }) {
             
 
 
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

@@ -1,10 +1,19 @@
 .CreateRoute{
     width:100%;
     min-height:100vh;
-    max-width: 1120px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 20px 30px 50px;
+    padding: 20px 20px 36px;
     box-sizing: border-box;
+}
+
+.CreateRoute .CreateRouteContainer {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 10px 26px rgba(16, 24, 40, 0.08);
+    padding: 20px 12px 20px;
+    max-width: 1080px;
+    margin: 0 auto;
 }
 
 
@@ -12,6 +21,16 @@
     display:flex;
     gap:40px;
     margin-bottom:20px;
+    justify-content: center;
+}
+
+.CreateRoute .row > div {
+    width: 500px;
+}
+
+.CreateRoute .full {
+    max-width: 1040px;
+    margin: 0 auto 20px;
 }
 
 
@@ -22,6 +41,7 @@
     margin-bottom:0;
     font-weight:bolder;
     font-size:40px;
+    text-align:center;
 }
 
 .CreateRoute .Initial p{
@@ -29,6 +49,11 @@
     margin-left:0;
     color:dimgray;
     font-size:16px;
+    text-align:center;
+}
+
+.CreateRoute .Initial {
+    text-align: center;
 }
 
 
@@ -37,26 +62,28 @@
     width:100%;
     max-width:100%;
     margin-left:0;
-    margin-top:20px;
-    border:1px solid dimgray;
+    margin-top:16px;
+    border:none;
     border-radius:10px;
     padding-bottom:20px;
+    background: #f8fbff;
 
-    margin-bottom: 100px;
+    margin-bottom: 0;
 }
 
 .CreateRoute .Details h4{
     font-weight:normal;
-    margin-left:20px;
+    margin-left:0;
     font-size:20px;
     margin-bottom:10px;
     margin-top:10px;
+    text-align:center;
 }
 
 
 
 .CreateRoute .left{
-    margin:20px 50px 0 0;
+    margin:20px 20px 0;
 }
 
 
@@ -65,9 +92,10 @@
 {
     display:block;
     font-size:16px;
-    margin-left:20px;
+    margin-left:0;
     margin-bottom:8px;
     font-weight:normal;
+    text-align:center;
 } 
 
 
@@ -75,9 +103,10 @@
 {
     display:block;
     font-size:16px;
-    margin-left:20px;
+    margin-left:0;
     margin-bottom:8px;
     font-weight:normal;
+    text-align:center;
 }
 
 
@@ -85,51 +114,57 @@
 {
     display:block;
     font-size:16px;
-    margin-left:20px;
+    margin-left:0;
     margin-bottom:8px;
     font-weight:normal;
+    text-align:center;
 }
 
 #label-ArrivalDate
 {
     display:block;
     font-size:16px;
-    margin-left:20px;
+    margin-left:0;
     margin-bottom:8px;
     font-weight:normal;
+    text-align:center;
 }
 #label-vehicle
 {
     display:block;
     font-size:16px;
-    margin-left:20px;
+    margin-left:0;
     margin-bottom:8px;
     font-weight:normal;
+    text-align:center;
 }
 #label-capacity
 {
     display:block;
     font-size:16px;
-    margin-left:20px;
+    margin-left:0;
     margin-bottom:8px;
     font-weight:normal;
+    text-align:center;
 }
 
 #label-price
 {
     display:block;
     font-size:16px;
-    margin-left:20px;
+    margin-left:0;
     margin-bottom:8px;
     font-weight:normal;
+    text-align:center;
 }
 
 #label-desc{
     display:block;
     font-size:16px;
-    margin-left:20px;
+    margin-left:0;
     margin-bottom:8px;
     font-weight:normal;
+    text-align:center;
 }
 
 
@@ -140,8 +175,10 @@
     font-size:16px;
     border:1px solid #ccc;
     border-radius:5px;
-    margin:0 20px;
-    width:350px;
+    margin:0;
+    width:100%;
+    height:42px;
+    box-sizing:border-box;
     background-color:lightgray;
     color:black;
 }
@@ -154,10 +191,26 @@
     font-size:16px;
     border:1px solid #ccc;
     border-radius:5px;
-    margin:0 20px;
-    width:350px;
+    margin:0;
+    width:100%;
+    height:42px;
+    box-sizing:border-box;
     background-color:lightgray;
     color:black;
+}
+
+.CreateRoute .cityOtherInput {
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px 0 0;
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    background-color: lightgray;
+    color: black;
 }
 #DepartDate
 {
@@ -166,8 +219,8 @@
     font-size:16px;
     border:1px solid #ccc;
     border-radius:5px;
-    margin:0 20px;
-    width:350px;
+    margin:0;
+    width:100%;
     background-color:lightgray;
     color:black;
 }
@@ -178,8 +231,8 @@
     font-size:16px;
     border:1px solid #ccc;
     border-radius:5px;
-    margin:0 20px;
-    width:350px;
+    margin:0;
+    width:100%;
     background-color:lightgray;
     color:black;
 }
@@ -189,8 +242,8 @@
     font-size:16px;
     border:1px solid #ccc;
     border-radius:5px;
-    margin:0 20px;
-    width:350px;
+    margin:0;
+    width:100%;
     background-color:lightgray;
     color:black;
 }
@@ -203,8 +256,8 @@
     font-size:16px;
     border:1px solid #ccc;
     border-radius:5px;
-    margin:0 20px;
-    width:375px;
+    margin:0;
+    width:100%;
     background-color:lightgray;
     color:black;
 }
@@ -217,8 +270,8 @@
     font-size:16px;
     border:1px solid #ccc;
     border-radius:5px;
-    margin:0 20px;
-    width:820px;
+    margin:0;
+    width:100%;
     background-color:lightgray;
 }
 
@@ -230,8 +283,8 @@
     font-size:16px;
     border:1px solid #ccc;
     border-radius:5px;
-    margin:0 20px;
-    width:820px;
+    margin:0;
+    width:100%;
     height:60px;
     background-color:lightgray;
 }

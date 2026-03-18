@@ -7,7 +7,6 @@
   padding: 15px 50px;
   background-color: white;
   font-family: sans-serif;
-  border-bottom: 1px solid grey;
 }
  
 
@@ -18,24 +17,48 @@
   font-weight: bold;
 }
 
+.logo a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #b9d5ef;
+  background: #eef7ff;
+  text-decoration: none;
+}
+
+.logo a:hover {
+  background: #e2f1ff;
+}
+
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 40px;
+  gap: 12px;
   margin: 0;
   padding: 0;
+  align-items: center;
 }
 
 .nav-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background-color: #123b66;
+  border: none;
+  cursor: pointer;
   text-decoration: none;
-  color: gray;
+  color: white;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: background-color 0.3s;
 }
 
 .nav-links a:hover {
-  color: #1698ee;
+  background-color: #333366;
 }
 
 
@@ -49,6 +72,11 @@
   text-decoration: none;
   color: gray;
   font-weight: 500;
+}
+
+.nav-right span {
+  white-space: nowrap;
+  font-size: 14px;
 }
 
 .nav-right .login:hover {
@@ -68,5 +96,5 @@
 }
 
 .nav-right .btn:hover {
-  background-color: #333366;
+  background-color: #c62828;
 }

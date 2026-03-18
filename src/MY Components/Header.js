@@ -15,7 +15,9 @@ function Navbar({ currentUser, onLogout }) {
     <nav className="navbar">
       
       <div className="logo"> 
-        <h2>Fretron</h2>
+        <Link to="/">
+          <h2>Fretron</h2>
+        </Link>
       </div>
 
       

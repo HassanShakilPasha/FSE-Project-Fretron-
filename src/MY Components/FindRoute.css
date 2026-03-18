@@ -1,39 +1,45 @@
 .findRoutePage {
-    max-width: 1320px;
+    width: 100%;
     margin: 0 auto;
     padding: 20px 30px 40px;
+    box-sizing: border-box;
 }
 
 .findRoutePage .top h1 {
     margin-top: 10px;
     margin-bottom: 0;
+    text-align: center;
 }
 
 .findRoutePage .top p {
     margin-top: 9px;
     color: #4a5565;
+    text-align: center;
 }
 
 .findRoutePage .Search {
     margin-top: 30px;
-    border-radius: 8px;
+    border-radius: 14px;
     width: 100%;
     box-sizing: border-box;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 28px 30px;
+    background: #ffffff;
+    border: none;
+    box-shadow: 0 10px 26px rgba(16, 24, 40, 0.08);
 }
 
 .findRoutePage .Search h3 {
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 700;
     margin: 0;
 }
 
 .findRoutePage .grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 16px;
     align-items: end;
-    margin-top: 20px;
+    margin-top: 26px;
 }
 
 .findRoutePage .Origin,
@@ -47,8 +53,9 @@
 .findRoutePage #label-origin,
 .findRoutePage #label-destination,
 .findRoutePage #label-vehicle {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
+    color: #23364d;
 }
 
 .findRoutePage #origin,
@@ -56,34 +63,61 @@
 .findRoutePage #vehicle {
     padding: 10px 12px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #c8d5e5;
+    border-radius: 10px;
     width: 100%;
     box-sizing: border-box;
-    background-color: lightgray;
-    color: black;
-    height: 42px;
+    background-color: #f7fafc;
+    color: #1f2937;
+    height: 56px;
+}
+
+.findRoutePage #vehicle {
+    outline: none;
+}
+
+.findRoutePage #vehicle:focus {
+    border-color: #6ca6df;
+    box-shadow: 0 0 0 2px rgba(90, 160, 230, 0.15);
 }
 
 .findRoutePage .Button {
     display: flex;
     align-items: end;
+    width: 100%;
 }
 
 .findRoutePage #Search {
     width: 100%;
-    padding: 10px 20px;
+    padding: 0 20px;
     font-size: 16px;
+    font-weight: 600;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     background: black;
     color: white;
     cursor: pointer;
+    height: 56px;
+    transition: background-color 0.2s ease;
+}
+
+.findRoutePage #Search:hover {
+    background: #1f2937;
 }
 
 .findRoutePage .Available {
     margin-top: 28px;
     color: #4a5565;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px 20px 12px;
+    box-shadow: 0 10px 26px rgba(16, 24, 40, 0.08);
+}
+
+.findRoutePage .Available > p {
+    margin: 0;
+    font-weight: 800;
+    color: #1d3047;
 }
 
 .findRoutePage .grid2 {
@@ -147,4 +181,24 @@
     height: 36px;
     border: none;
     border-radius: 8px;
+}
+
+@media (max-width: 1080px) {
+    .findRoutePage .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .findRoutePage {
+        padding: 16px;
+    }
+
+    .findRoutePage .Search {
+        padding: 20px 16px;
+    }
+
+    .findRoutePage .grid {
+        grid-template-columns: 1fr;
+    }
 }

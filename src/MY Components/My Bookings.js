@@ -19,8 +19,9 @@ export default function MyBookings({ currentUser }) {
             : 0;
 
   return (
-        <div className="myBookingsPage">
-      <div className="top">
+                <div className="myBookingsPage">
+            <div className="myBookingsContainer">
+            <div className="top">
             <h1>
                         My Routes
             </h1>
@@ -99,10 +100,10 @@ export default function MyBookings({ currentUser }) {
 
                 <div className="qgrid">
 
-                    <Link id="b" to="/find-route">Find Route</Link>
-                    <Link id="b" to="/create-route">Create Route</Link>
-                    <Link id="b" to="/my-routes">Refresh My Routes</Link>
-                    <Link id="b" to="/dashboard">Go to Dashboard</Link>
+                    <Link className="quickNavBtn" to="/find-route">Find Route</Link>
+                    <Link className="quickNavBtn" to="/create-route">Create Route</Link>
+                    <Link className="quickNavBtn" to="/my-routes">Refresh My Routes</Link>
+                    <Link className="quickNavBtn" to="/dashboard">Go to Dashboard</Link>
 
                 </div>
             
@@ -177,6 +178,8 @@ export default function MyBookings({ currentUser }) {
     </div>
 
     </div>
+
+        </div>
 
 
     </div>

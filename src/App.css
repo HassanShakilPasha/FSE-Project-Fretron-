@@ -1,6 +1,25 @@
 .App {
-  min-height: 100vh;           /* full screen height */
-  background-color: white;   /* your page color */
-  display: flex;
-  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.appAntigravityBg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at 15% 20%, #eaf5ff 0%, #d8ebff 46%, #c6e0ff 100%);
+  pointer-events: none;
+}
+
+.appAntigravityBg canvas {
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0.6;
+}
+
+.appLayer {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
 }
