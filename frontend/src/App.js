@@ -10,7 +10,7 @@ import FindRoute from './MY Components/FindRoute';
 import MyBookings from './MY Components/My Bookings';
 import { getCurrentUser, logoutUser } from './utils/storage';
 import PageLoader from './MY Components/PageLoader';
-import Antigravity from './MY Components/Antigravity';
+import AnimatedBackground from './MY Components/AnimatedBackground';
 
 function ProtectedRoute({ currentUser, requiredRole, children }) {
   if (!currentUser) {
@@ -45,8 +45,8 @@ function AppContent({ currentUser, isLoggedIn, onAuthSuccess, onLogout }) {
 
   return (
     <>
-      <div className="appAntigravityBg" aria-hidden="true">
-        <Antigravity
+      <div className="appBackground" aria-hidden="true">
+        <AnimatedBackground
           autoAnimate
           count={220}
           color="#2e8fff"
@@ -121,8 +121,8 @@ function App() {
     setCurrentUser(user);
   }
 
-  function handleLogout() {
-    logoutUser();
+  async function handleLogout() {
+    await logoutUser();
     setCurrentUser(null);
   }
 

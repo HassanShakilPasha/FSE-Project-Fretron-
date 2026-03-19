@@ -4,12 +4,30 @@ import { Link } from "react-router-dom";
 import { getRoutesByTransporter } from "../utils/storage";
 
 export default function MyBookings({ currentUser }) {
-    const routes = React.useMemo(() => {
-        if (!currentUser) {
-            return [];
+    const [routes, setRoutes] = React.useState([]);
+
+    React.useEffect(() => {
+        let isMounted = true;
+
+        async function loadRoutes() {
+            if (!currentUser) {
+                if (isMounted) {
+                    setRoutes([]);
+                }
+                return;
+            }
+
+            const transporterRoutes = await getRoutesByTransporter(currentUser.id);
+            if (isMounted) {
+                setRoutes(transporterRoutes);
+            }
         }
 
-        return getRoutesByTransporter(currentUser.id);
+        loadRoutes();
+
+        return () => {
+            isMounted = false;
+        };
     }, [currentUser]);
 
     const totalCapacity = routes.reduce((sum, route) => sum + Number(route.availableCapacity || 0), 0);

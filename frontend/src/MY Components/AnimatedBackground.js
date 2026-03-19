@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
-const AntigravityInner = ({
+const AnimatedBackgroundInner = ({
   count = 300,
   magnetRadius = 10,
   ringRadius = 10,
@@ -171,16 +171,16 @@ const AntigravityInner = ({
   );
 };
 
-const Antigravity = (props) => {
+const AnimatedBackground = (props) => {
   return (
     <Canvas
       camera={{ position: [0, 0, 50], fov: 35 }}
       dpr={[1, 1.5]}
       gl={{ antialias: true, alpha: true }}
     >
-      <AntigravityInner {...props} />
+      <AnimatedBackgroundInner {...props} />
     </Canvas>
   );
 };
 
-export default Antigravity;
+export default AnimatedBackground;

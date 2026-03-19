@@ -88,7 +88,7 @@ export default function CreateRoute({ currentUser }) {
     });
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     setStatus('');
     setError('');
@@ -112,16 +112,20 @@ export default function CreateRoute({ currentUser }) {
       return;
     }
 
-    createRoute(
-      {
-        ...form,
-        source: finalSource,
-        destination: finalDestination,
-      },
-      currentUser.id
-    );
-    setStatus('Route posted successfully. You can now view it in My Routes.');
-    resetForm();
+    try {
+      await createRoute(
+        {
+          ...form,
+          source: finalSource,
+          destination: finalDestination,
+        },
+        currentUser.id
+      );
+      setStatus('Route posted successfully. You can now view it in My Routes.');
+      resetForm();
+    } catch (submitError) {
+      setError('Unable to create route right now. Please try again.');
+    }
   }
 
   if (!currentUser || currentUser.role !== 'transporter') {

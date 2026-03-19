@@ -6,8 +6,8 @@ function Navbar({ currentUser, onLogout }) {
   const navigate = useNavigate();
   const isTransporter = currentUser?.role === "transporter";
 
-  function handleLogoutClick() {
-    onLogout();
+  async function handleLogoutClick() {
+    await onLogout();
     navigate("/login");
   }
 

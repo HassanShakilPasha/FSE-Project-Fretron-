@@ -4,7 +4,7 @@
   overflow-x: hidden;
 }
 
-.appAntigravityBg {
+.appBackground {
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -12,7 +12,7 @@
   pointer-events: none;
 }
 
-.appAntigravityBg canvas {
+.appBackground canvas {
   width: 100% !important;
   height: 100% !important;
   opacity: 0.6;
