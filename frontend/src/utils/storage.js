@@ -2,7 +2,56 @@ const SESSION_KEY = "fse_session";
 const SESSION_TOKEN_KEY = "fse_access_token";
 const SESSION_REFRESH_TOKEN_KEY = "fse_refresh_token";
 const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
-const AUTH_API_BASE_URL = process.env.REACT_APP_AUTH_API_URL || API_BASE_URL;
+const BACKEND_API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL || API_BASE_URL;
+
+function normalizeUser(user) {
+  if (!user) {
+    return null;
+  }
+
+  const metadata = user.user_metadata || {};
+  const role = user.role || metadata.role || 'business';
+
+  return {
+    ...user,
+    name: user.name || metadata.name || "",
+    role,
+    activeRole: user.activeRole || metadata.activeRole || role,
+  };
+}
+
+export function saveCurrentUser(user) {
+  const normalizedUser = normalizeUser(user);
+  if (normalizedUser) {
+    writeJson(SESSION_KEY, normalizedUser);
+  }
+  return normalizedUser;
+}
+
+export function toggleActiveRole(user) {
+  const normalizedUser = normalizeUser(user);
+
+  if (!normalizedUser || normalizedUser.role === 'admin') {
+    return normalizedUser;
+  }
+
+  const nextRole = normalizedUser.activeRole === 'transporter' ? 'business' : 'transporter';
+  const updatedUser = {
+    ...normalizedUser,
+    activeRole: nextRole,
+  };
+
+  writeJson(SESSION_KEY, updatedUser);
+  return updatedUser;
+}
+
+export function canCreateRoute(user) {
+  if (!user) {
+    return false;
+  }
+
+  return user.role === 'admin' || (user.activeRole || user.role) === 'transporter';
+}
 
 function readJson(key, fallbackValue) {
   try {
@@ -40,10 +89,10 @@ export async function registerUser({ name, email, password, role }) {
   try {
     const payload = await apiRequest("/auth/signup", {
       method: "POST",
-      baseUrl: AUTH_API_BASE_URL,
+      baseUrl: BACKEND_API_BASE_URL,
       body: { name, email, password, role },
     });
-    return { ok: true, user: payload.user };
+    return { ok: true, user: normalizeUser(payload.user) };
   } catch (error) {
     return { ok: false, message: error.message || "Registration failed." };
   }
@@ -53,8 +102,8 @@ export async function loginUser({ email, password }) {
   try {
     const payload = await apiRequest("/auth/login", {
       method: "POST",
-      baseUrl: AUTH_API_BASE_URL,
-      body: { email, password },
+      baseUrl: BACKEND_API_BASE_URL,
+      body: { email: String(email || '').trim(), password: String(password || '').trim() },
     });
 
     writeJson(SESSION_KEY, payload.user);
@@ -64,14 +113,15 @@ export async function loginUser({ email, password }) {
     if (payload.refresh_token) {
       localStorage.setItem(SESSION_REFRESH_TOKEN_KEY, payload.refresh_token);
     }
-    return { ok: true, user: payload.user };
+    const user = saveCurrentUser(payload.user);
+    return { ok: true, user };
   } catch (error) {
     return { ok: false, message: error.message || "Invalid email or password." };
   }
 }
 
 export function getCurrentUser() {
-  return readJson(SESSION_KEY, null);
+  return normalizeUser(readJson(SESSION_KEY, null));
 }
 
 export async function logoutUser() {
@@ -81,7 +131,7 @@ export async function logoutUser() {
     try {
       await apiRequest("/auth/logout", {
         method: "POST",
-        baseUrl: AUTH_API_BASE_URL,
+        baseUrl: BACKEND_API_BASE_URL,
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

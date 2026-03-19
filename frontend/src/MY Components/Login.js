@@ -84,6 +84,9 @@ export default function Login({ onAuthSuccess }) {
             <p>
               {mode === 'login' ? 'Log in to your account to continue' : 'Sign up to start posting routes'}
             </p>
+            {mode === 'login' && (
+              <p className='adminHint'>Admin demo login: admin@fretron.com / FretronAdmin123</p>
+            )}
           </div>
 
           <form className='form' onSubmit={handleSubmit}>

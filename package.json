@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npm run dev --prefix auth-project\" \"npm start --prefix frontend\"",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm start --prefix frontend\"",
     "frontend": "npm start --prefix frontend",
-    "auth": "npm run dev --prefix auth-project",
+    "backend": "npm run dev --prefix backend",
     "build": "npm run build --prefix frontend"
   },
   "devDependencies": {

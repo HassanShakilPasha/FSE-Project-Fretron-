@@ -1,6 +1,9 @@
 const express = require('express');
 const { supabase } = require('../config/supabase');
-const { requireAuth } = require('../middleware/requireAuth');
+const { requireAuth, ADMIN_ACCESS_TOKEN, getAdminUser } = require('../middleware/requireAuth');
+
+const ADMIN_EMAIL = 'admin@fretron.com';
+const ADMIN_PASSWORD = 'FretronAdmin123';
 
 const router = express.Router();
 
@@ -40,12 +43,28 @@ router.post('/signup', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body || {};
+    const normalizedEmail = String(email || '').trim().toLowerCase();
+    const normalizedPassword = String(password || '').trim();
 
-    if (!email || !password) {
+    if (!normalizedEmail || !normalizedPassword) {
       return res.status(400).json({ ok: false, message: 'Email and password are required.' });
     }
 
-    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if (normalizedEmail === ADMIN_EMAIL && normalizedPassword === ADMIN_PASSWORD) {
+      const user = getAdminUser();
+      return res.json({
+        ok: true,
+        user,
+        session: null,
+        access_token: ADMIN_ACCESS_TOKEN,
+        refresh_token: null,
+      });
+    }
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: normalizedEmail,
+      password: normalizedPassword,
+    });
 
     if (error) {
       return res.status(401).json({ ok: false, message: error.message });
@@ -65,6 +84,10 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', requireAuth, async (req, res) => {
   try {
+    if (req.accessToken === ADMIN_ACCESS_TOKEN) {
+      return res.json({ ok: true, message: 'Logged out.' });
+    }
+
     const response = await fetch(`${process.env.SUPABASE_URL}/auth/v1/logout`, {
       method: 'POST',
       headers: {

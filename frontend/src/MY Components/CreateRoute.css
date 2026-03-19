@@ -1,345 +1,216 @@
-.CreateRoute{
-    width:100%;
-    min-height:100vh;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding: 20px 20px 36px;
-    box-sizing: border-box;
+.CreateRoute {
+  width: 100%;
+  min-height: 100vh;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 24px 18px 40px;
+  box-sizing: border-box;
 }
 
 .CreateRoute .CreateRouteContainer {
-    background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 10px 26px rgba(16, 24, 40, 0.08);
-    padding: 20px 12px 20px;
-    max-width: 1080px;
-    margin: 0 auto;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 18px;
+  box-shadow: 0 18px 42px rgba(16, 24, 40, 0.1);
+  padding: 18px 18px 22px;
+  max-width: 980px;
+  margin: 0 auto;
+  border: 1px solid rgba(23, 63, 115, 0.08);
 }
 
-
-.CreateRoute .row{
-    display:flex;
-    gap:40px;
-    margin-bottom:20px;
-    justify-content: center;
+.CreateRoute .Initial h1 {
+  margin: 12px 0 0;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  text-align: center;
+  color: #10263f;
 }
 
-.CreateRoute .row > div {
-    width: 500px;
+.CreateRoute .Initial p {
+  margin: 8px 0 0;
+  color: #5c6f82;
+  font-size: 15px;
+  text-align: center;
+}
+
+.CreateRoute .Details {
+  width: 100%;
+  margin: 18px 0 0;
+  border: none;
+  border-radius: 16px;
+  padding: 18px 18px 22px;
+  background: #f8fbff;
+  box-sizing: border-box;
+}
+
+.CreateRoute .Details h4 {
+  margin: 0 0 18px;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: center;
+  color: #10263f;
+}
+
+.CreateRoute .left {
+  margin: 0;
+}
+
+.CreateRoute .row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.CreateRoute .row > div,
+.CreateRoute .full {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
 }
 
 .CreateRoute .full {
-    max-width: 1040px;
-    margin: 0 auto 20px;
+  margin-bottom: 18px;
 }
 
-
-
-.CreateRoute .Initial h1{
-    margin-left:0;
-    margin-top:20px;
-    margin-bottom:0;
-    font-weight:bolder;
-    font-size:40px;
-    text-align:center;
+.CreateRoute label,
+#label-Origin,
+#label-Destination,
+#label-DepartDate,
+#label-ArrivalDate,
+#label-vehicle,
+#label-capacity,
+#label-price,
+#label-desc {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: #173f73;
+  text-align: center;
+  margin: 0;
 }
 
-.CreateRoute .Initial p{
-    margin-top:5px;
-    margin-left:0;
-    color:dimgray;
-    font-size:16px;
-    text-align:center;
+.CreateRoute select,
+.CreateRoute input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  font-size: 16px;
+  border: 1px solid #ccd9e8;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #13263d;
+  box-sizing: border-box;
+  outline: none;
 }
 
-.CreateRoute .Initial {
-    text-align: center;
+.CreateRoute select:focus,
+.CreateRoute input:focus {
+  border-color: #6d95c7;
+  box-shadow: 0 0 0 3px rgba(109, 149, 199, 0.16);
 }
 
-
-
-.CreateRoute .Details{
-    width:100%;
-    max-width:100%;
-    margin-left:0;
-    margin-top:16px;
-    border:none;
-    border-radius:10px;
-    padding-bottom:20px;
-    background: #f8fbff;
-
-    margin-bottom: 0;
-}
-
-.CreateRoute .Details h4{
-    font-weight:normal;
-    margin-left:0;
-    font-size:20px;
-    margin-bottom:10px;
-    margin-top:10px;
-    text-align:center;
-}
-
-
-
-.CreateRoute .left{
-    margin:20px 20px 0;
-}
-
-
-
-#label-Origin
-{
-    display:block;
-    font-size:16px;
-    margin-left:0;
-    margin-bottom:8px;
-    font-weight:normal;
-    text-align:center;
-} 
-
-
-#label-Destination
-{
-    display:block;
-    font-size:16px;
-    margin-left:0;
-    margin-bottom:8px;
-    font-weight:normal;
-    text-align:center;
-}
-
-
-#label-DepartDate
-{
-    display:block;
-    font-size:16px;
-    margin-left:0;
-    margin-bottom:8px;
-    font-weight:normal;
-    text-align:center;
-}
-
-#label-ArrivalDate
-{
-    display:block;
-    font-size:16px;
-    margin-left:0;
-    margin-bottom:8px;
-    font-weight:normal;
-    text-align:center;
-}
-#label-vehicle
-{
-    display:block;
-    font-size:16px;
-    margin-left:0;
-    margin-bottom:8px;
-    font-weight:normal;
-    text-align:center;
-}
-#label-capacity
-{
-    display:block;
-    font-size:16px;
-    margin-left:0;
-    margin-bottom:8px;
-    font-weight:normal;
-    text-align:center;
-}
-
-#label-price
-{
-    display:block;
-    font-size:16px;
-    margin-left:0;
-    margin-bottom:8px;
-    font-weight:normal;
-    text-align:center;
-}
-
-#label-desc{
-    display:block;
-    font-size:16px;
-    margin-left:0;
-    margin-bottom:8px;
-    font-weight:normal;
-    text-align:center;
-}
-
-
-#Origin
-{
-    display:block;
-    padding:10px;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin:0;
-    width:100%;
-    height:42px;
-    box-sizing:border-box;
-    background-color:lightgray;
-    color:black;
-}
-
-
-#Destination
-{
-    display:block;
-    padding:10px;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin:0;
-    width:100%;
-    height:42px;
-    box-sizing:border-box;
-    background-color:lightgray;
-    color:black;
+.CreateRoute select,
+#Origin,
+#Destination,
+#vehicle,
+#DepartDate,
+#ArrivalDate,
+#capacity,
+#price,
+#desc,
+.CreateRoute .cityOtherInput {
+  background-color: #eef4fb;
 }
 
 .CreateRoute .cityOtherInput {
-    display: block;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 10px 0 0;
-    width: 100%;
-    height: 42px;
-    box-sizing: border-box;
-    background-color: lightgray;
-    color: black;
-}
-#DepartDate
-{
-    display:block;
-    padding:10px;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin:0;
-    width:100%;
-    background-color:lightgray;
-    color:black;
-}
-#ArrivalDate
-{
-    display:block;
-    padding:10px;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin:0;
-    width:100%;
-    background-color:lightgray;
-    color:black;
-}
-#capacity{
-    display:block;
-    padding:10px;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin:0;
-    width:100%;
-    background-color:lightgray;
-    color:black;
+  margin-top: 0;
 }
 
-
-
-#vehicle{
-    display:block;
-    padding:10px;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin:0;
-    width:100%;
-    background-color:lightgray;
-    color:black;
+#desc {
+  min-height: 88px;
+  height: 88px;
+  padding-top: 12px;
+  resize: vertical;
 }
 
-
-
-#price{
-    display:block;
-    padding:10px;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin:0;
-    width:100%;
-    background-color:lightgray;
+.CreateRoute .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 18px 0 0;
+  flex-wrap: wrap;
 }
 
-
-
-#desc{
-    display:block;
-    padding:10px;
-    font-size:16px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    margin:0;
-    width:100%;
-    height:60px;
-    background-color:lightgray;
+#createRouteBtn,
+#cancelBtn {
+  width: auto;
+  min-width: 170px;
+  padding: 13px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-
-
-.CreateRoute .buttons{
-    display:flex;
-    gap:20px;
-    margin:20px;
+#createRouteBtn {
+  background: #173f73;
+  color: #ffffff;
+  border: none;
 }
 
-
-
-#createRouteBtn{
-    width:700px;
-    padding:14px;
-    background:black;
-    color:white;
-    border:none;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
+#createRouteBtn:hover {
+  background: #18a957;
 }
 
-
-
-#cancelBtn{
-    padding:14px 25px;
-    border-radius:8px;
-    border:1px solid gray;
-    margin-left: 20px;
-    background:white;
-    font-size:16px;
-    cursor:pointer;
+#cancelBtn {
+  border: 1px solid #b6c4d4;
+  background: #ffffff;
+  color: #173f73;
 }
 
+#cancelBtn:hover {
+  background: #f1f5fa;
+}
 
-#Forgot
-{
-    margin-left: 20px;
-    text-decoration: none;
+.CreateRoute .cityOtherInput {
+  height: 48px;
 }
 
 .formStatus {
-    margin: 8px 20px;
-    font-size: 14px;
+  margin: 8px 0 0;
+  font-size: 14px;
+  text-align: center;
 }
 
 .formError {
-    color: #b91c1c;
+  color: #b91c1c;
 }
 
 .formSuccess {
-    color: #15803d;
+  color: #15803d;
 }
 
+@media (max-width: 900px) {
+  .CreateRoute .row {
+    grid-template-columns: 1fr;
+  }
 
+  .CreateRoute .CreateRouteContainer {
+    padding: 14px;
+  }
+
+  .CreateRoute .Details {
+    padding: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .CreateRoute {
+    padding: 14px 12px 28px;
+  }
+
+  #createRouteBtn,
+  #cancelBtn {
+    width: 100%;
+  }
+}

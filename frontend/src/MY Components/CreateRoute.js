@@ -128,14 +128,16 @@ export default function CreateRoute({ currentUser }) {
     }
   }
 
-  if (!currentUser || currentUser.role !== 'transporter') {
+  const effectiveRole = currentUser?.role === 'admin' ? 'admin' : (currentUser?.activeRole || currentUser?.role);
+
+  if (!currentUser || (effectiveRole !== 'transporter' && currentUser.role !== 'admin')) {
     return (
       <div className='CreateRoute'>
         <div className='CreateRouteContainer'>
           <div className='Initial'>
             <h1>Create Route</h1>
-            <p>Only transporter accounts can post routes.</p>
-            <p><Link to='/login'>Log in as transporter</Link> to continue.</p>
+            <p>Only transporter mode can post routes.</p>
+            <p>Use the role switch in the header to change to transporter mode.</p>
           </div>
         </div>
       </div>

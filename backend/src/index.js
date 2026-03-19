@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (_req, res) => {
-  res.json({ ok: true, service: 'auth-project' });
+  res.json({ ok: true, service: 'backend' });
 });
 
 app.use('/auth', authRoutes);

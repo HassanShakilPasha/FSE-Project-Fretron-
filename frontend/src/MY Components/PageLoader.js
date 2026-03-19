@@ -5,7 +5,6 @@ export default function PageLoader() {
   return (
     <div className='pageLoaderScreen'>
       <div className='routeLoader' />
-      <p>Loading page...</p>
     </div>
   );
 }

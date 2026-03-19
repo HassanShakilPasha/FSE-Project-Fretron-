@@ -8,8 +8,9 @@
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: radial-gradient(circle at 15% 20%, #eaf5ff 0%, #d8ebff 46%, #c6e0ff 100%);
+  background: radial-gradient(circle at 18% 18%, #eef3ff 0%, #d6e4ff 45%, #c2d4ff 100%);
   pointer-events: none;
+  transition: background 0.35s ease;
 }
 
 .appBackground canvas {

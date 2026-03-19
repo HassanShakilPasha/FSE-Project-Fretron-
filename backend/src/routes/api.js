@@ -33,7 +33,7 @@ async function writeRoutes(routes) {
 }
 
 router.get('/health', (_req, res) => {
-  res.json({ ok: true, service: 'auth-project-api' });
+  res.json({ ok: true, service: 'backend-api' });
 });
 
 router.get('/profile', requireAuth, (req, res) => {
@@ -53,7 +53,7 @@ router.get('/routes/transporter/:transporterId', requireAuth, async (req, res) =
   try {
     const { transporterId } = req.params;
 
-    if (req.user.id !== transporterId) {
+    if (req.user.role !== 'admin' && req.user.id !== transporterId) {
       return res.status(403).json({ ok: false, message: 'Forbidden for this transporter.' });
     }
 

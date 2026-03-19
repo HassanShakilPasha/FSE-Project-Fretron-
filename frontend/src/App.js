@@ -11,23 +11,67 @@ import MyBookings from './MY Components/My Bookings';
 import { getCurrentUser, logoutUser } from './utils/storage';
 import PageLoader from './MY Components/PageLoader';
 import AnimatedBackground from './MY Components/AnimatedBackground';
+import { saveCurrentUser, toggleActiveRole } from './utils/storage';
 
 function ProtectedRoute({ currentUser, requiredRole, children }) {
   if (!currentUser) {
     return <Navigate to="/login" replace />;
   }
 
-  if (requiredRole && currentUser.role !== requiredRole) {
-    return <Navigate to="/dashboard" replace />;
+  if (requiredRole && currentUser.role !== 'admin') {
+    const effectiveRole = currentUser.activeRole || currentUser.role;
+    if (effectiveRole !== requiredRole) {
+      return <Navigate to="/dashboard" replace />;
+    }
   }
 
   return children;
 }
 
-function AppContent({ currentUser, isLoggedIn, onAuthSuccess, onLogout }) {
+function AppContent({ currentUser, isLoggedIn, onAuthSuccess, onLogout, onToggleRole }) {
   const location = useLocation();
   const isFirstRender = useRef(true);
   const [isPageLoading, setIsPageLoading] = useState(false);
+
+  const pageTheme = useMemo(() => {
+    const themes = [
+      {
+        match: (pathname) => pathname === '/',
+        background: 'radial-gradient(circle at 18% 18%, #f3ecff 0%, #dde5ff 38%, #b8d0ff 72%, #a9beff 100%)',
+        color: '#7869ea',
+      },
+      {
+        match: (pathname) => pathname.startsWith('/dashboard'),
+        background: 'radial-gradient(circle at 18% 18%, #edf2ff 0%, #d7ddff 36%, #b7c8ff 68%, #97b1ff 100%)',
+        color: '#5f76ea',
+      },
+      {
+        match: (pathname) => pathname.startsWith('/create-route'),
+        background: 'radial-gradient(circle at 18% 18%, #f6eaff 0%, #e0d5ff 35%, #c5beff 68%, #adb0ff 100%)',
+        color: '#8b6ff0',
+      },
+      {
+        match: (pathname) => pathname.startsWith('/find-route'),
+        background: 'radial-gradient(circle at 18% 18%, #ebf4ff 0%, #d2dcff 36%, #b9c5ff 68%, #a9b7ff 100%)',
+        color: '#6b7ae8',
+      },
+      {
+        match: (pathname) => pathname.startsWith('/my-routes'),
+        background: 'radial-gradient(circle at 18% 18%, #f2e8ff 0%, #d7deff 36%, #b6c6ff 68%, #97b4ff 100%)',
+        color: '#7c68e0',
+      },
+      {
+        match: (pathname) => pathname.startsWith('/login'),
+        background: 'radial-gradient(circle at 18% 18%, #f7efff 0%, #e3e6ff 36%, #ccd1ff 68%, #b6c0ff 100%)',
+        color: '#8d71ef',
+      },
+    ];
+
+    return themes.find((theme) => theme.match(location.pathname)) || {
+      background: 'radial-gradient(circle at 18% 18%, #eef3ff 0%, #d8e0ff 40%, #becfff 74%, #aabfff 100%)',
+      color: '#6f7be8',
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -38,18 +82,18 @@ function AppContent({ currentUser, isLoggedIn, onAuthSuccess, onLogout }) {
     setIsPageLoading(true);
     const timer = setTimeout(() => {
       setIsPageLoading(false);
-    }, 500);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
   return (
     <>
-      <div className="appBackground" aria-hidden="true">
+      <div className="appBackground" aria-hidden="true" style={{ background: pageTheme.background }}>
         <AnimatedBackground
           autoAnimate
           count={220}
-          color="#2e8fff"
+          color={pageTheme.color}
           ringRadius={8}
           magnetRadius={12}
           particleSize={1.25}
@@ -60,7 +104,7 @@ function AppContent({ currentUser, isLoggedIn, onAuthSuccess, onLogout }) {
       </div>
 
       <div className="appLayer">
-        <Header currentUser={currentUser} onLogout={onLogout} />
+        <Header currentUser={currentUser} onLogout={onLogout} onToggleRole={onToggleRole} />
         {isPageLoading ? (
           <PageLoader />
         ) : (
@@ -93,14 +137,7 @@ function AppContent({ currentUser, isLoggedIn, onAuthSuccess, onLogout }) {
               }
             />
             <Route path="/find-route" element={<FindRoute />} />
-            <Route
-              path="/my-routes"
-              element={
-                <ProtectedRoute currentUser={currentUser} requiredRole="transporter">
-                  <MyBookings currentUser={currentUser} />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/my-routes" element={<ProtectedRoute currentUser={currentUser}><MyBookings currentUser={currentUser} /></ProtectedRoute>} />
             <Route path="/Dashboard" element={<Navigate to="/dashboard" replace />} />
             <Route path="/CreateRoute" element={<Navigate to="/create-route" replace />} />
             <Route path="/FindRoute" element={<Navigate to="/find-route" replace />} />
@@ -118,12 +155,16 @@ function App() {
   const isLoggedIn = useMemo(() => Boolean(currentUser), [currentUser]);
 
   function handleAuthSuccess(user) {
-    setCurrentUser(user);
+    setCurrentUser(saveCurrentUser(user));
   }
 
   async function handleLogout() {
     await logoutUser();
     setCurrentUser(null);
+  }
+
+  function handleToggleRole() {
+    setCurrentUser((current) => toggleActiveRole(current));
   }
 
   return (
@@ -134,6 +175,7 @@ function App() {
           isLoggedIn={isLoggedIn}
           onAuthSuccess={handleAuthSuccess}
           onLogout={handleLogout}
+          onToggleRole={handleToggleRole}
         />
       </BrowserRouter>
     </div>
