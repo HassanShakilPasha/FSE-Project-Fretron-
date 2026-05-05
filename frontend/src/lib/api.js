@@ -4,7 +4,8 @@ export const API_BASE_URL =
   import.meta.env.VITE_API_URL || "http://localhost:5000/api";
 
 export async function apiRequest(path, options = {}) {
-  const token = await getClerkToken();
+  const shouldUseClerkToken = options.useClerkToken ?? !path.startsWith("/admin");
+  const token = shouldUseClerkToken ? await getClerkToken() : null;
   const isFormData = options.body instanceof FormData;
 
   const response = await fetch(`${API_BASE_URL}${path}`, {
